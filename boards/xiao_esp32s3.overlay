@@ -1,0 +1,17 @@
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <zephyr/dt-bindings/input/esp32-touch-sensor-input.h>
+
+
+
+/ {
+	aliases {
+		led0 = &myled0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		myled0: led_0 {
+			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+		};
+	};
+};
