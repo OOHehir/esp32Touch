@@ -4,14 +4,36 @@
 
 
 / {
-	aliases {
-		led0 = &myled0;
+
+aliases {
+	led0 = &myled0;
+	touch0 = &my_touch_sensor_0;
+};
+
+leds {
+	compatible = "gpio-leds";
+	myled0: led_0 {
+		gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+touch {
+	debounce-interval-ms = <30>;
+	href-microvolt = <2700000>;
+	lref-microvolt = <500000>;
+	href-atten-microvolt = <1000000>;
+	filter-mode = <ESP32_TOUCH_FILTER_MODE_IIR_16>;
+	filter-debounce-cnt = <1>;
+	filter-noise-thr = <ESP32_TOUCH_FILTER_NOISE_THR_4_8TH>;
+	filter-jitter-step = <4>;
+	filter-smooth-level = <ESP32_TOUCH_FILTER_SMOOTH_MODE_IIR_2>;
+
+	my_touch_sensor_0: touch_sensor_0 {
+		channel_num = <1>;
+		channel_sens = <20>;
+		zephyr,code = <INPUT_KEY_0>;
 	};
 
-	leds {
-		compatible = "gpio-leds";
-		myled0: led_0 {
-			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
-		};
-	};
+};
+
 };
