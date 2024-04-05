@@ -19,15 +19,14 @@
 #error "Unsupported board: led0 devicetree alias is not defined"
 #endif
 
-#define TOUCH0_NODE DT_ALIAS(touch0)
+#define TOUCH1_NODE DT_ALIAS(touch1)
 
-#if !DT_NODE_HAS_STATUS(TOUCH0_NODE, okay)
-#error "Unsupported board: touch0 devicetree alias is not defined"
+#if !DT_NODE_HAS_STATUS(TOUCH1_NODE, okay)
+#error "Unsupported board: touch1 devicetree alias is not defined"
 #endif
 
-static const struct gpio_dt_spec button = GPIO_DT_SPEC_GET_OR(SW0_NODE, gpios, {0});
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
-static const struct  gpio_dt_spec touch0 =  GPIO_DT_SPEC_GET_OR(LED0_NODE, gpios, {0});
+static const struct  gpio_dt_spec touch1 =  GPIO_DT_SPEC_GET_OR(TOUCH1_NODE, gpios, {0});
 static struct gpio_callback touch_cb_data;
 
 void touch_activated(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
@@ -49,34 +48,35 @@ int main(void)
         return 0;
     }
 
-    if (!gpio_is_ready_dt(&touch0)) {
+    if (!gpio_is_ready_dt(&touch1)) {
         printf("Error: touch device %s is not ready\n",
-               touch0.port->name);
+               touch1.port->name);
         return 0;
     }
 
-    ret = gpio_pin_configure_dt(&touch0, GPIO_INPUT);
+    ret = gpio_pin_configure_dt(&touch1, GPIO_INPUT);
     if (ret < 0) {
         printf("Error %d: failed to configure %s pin %d\n",
-               ret, touch0.port->name, touch0.pin);
+               ret, touch1.port->name, touch1.pin);
         return 0;
     }
 
-    ret = gpio_pin_interrupt_configure_dt(&touch0, GPIO_INT_EDGE_TO_ACTIVE);
+    ret = gpio_pin_interrupt_configure_dt(&touch1, GPIO_INT_EDGE_TO_ACTIVE);
         if (ret != 0) {
         printf("Error %d: failed to configure interrupt on %s pin %d\n",
-            ret, touch0.port->name, touch0.pin);
+            ret, touch1.port->name, touch1.pin);
         return 0;
     }
 
-    gpio_init_callback(&touch_cb_data, touch_activated, BIT(touch0.pin));
-    gpio_add_callback(touch0.port, &touch_cb_data);
-    printf("Set up button at %s pin %d\n", touch0.port->name, touch0.pin);
+    gpio_init_callback(&touch_cb_data, touch_activated, BIT(touch1.pin));
+    gpio_add_callback(touch1.port, &touch_cb_data);
+    printf("Set up button at %s pin %d\n", touch1.port->name, touch1.pin);
 
     printf("Board: %s\n", CONFIG_BOARD);
 
     while (1) {
         k_msleep(SLEEP_TIME_MS);
+        printf(".");
     }
     return 0;
 }

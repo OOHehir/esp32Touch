@@ -1,28 +1,25 @@
 # esp32Blink
-Simple 'out of tree' project to test touch on the ESP32 S3 using the Zephyr RTOS
-
-### Building and Running
-
-This application can be built and executed on QEMU as follows:
-
-#### Init:
+Simple 'out of tree' project to test touch feature on the ESP32 S3 using the Zephyr RTOS
+## Init:
 ```
     source ../zephyrproject/.venv/bin/activate
     source ../zephyrproject/zephyr/zephyr-env.sh
     source ../zephyrproject/zephyr/scripts/west_commands/completion/west-completion.bash
 ```
-
-#### Build:
+## Build:
+Build application & bootloader
 ```
-    west build -p always -b qemu_x86
+    west build -p always -b xiao_esp32s3
 ```
-
-To build for another board, change "qemu_x86" above to that board's name.
-
-### Sample Output
-
+## Binary blobs
+Espressif HAL requires WiFi and Bluetooth binary blobs in order work. Run the command below to retrieve those files.
 ```
-    Hello World! x86
+west blobs fetch hal_espressif
 ```
+## Flash
+```
+    west flash
+```
+## Pinout:
 
-Exit QEMU by pressing `CTRL+A`
+![ESP32S3](screenshots/esp32s3_pinout.jpeg)

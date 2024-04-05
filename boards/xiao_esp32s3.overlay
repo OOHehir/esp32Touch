@@ -7,7 +7,7 @@
 
 aliases {
 	led0 = &myled0;
-	touch0 = &my_touch_sensor_0;
+	touch1 = &my_touch_sensor_1;
 };
 
 leds {
@@ -28,7 +28,7 @@ touch {
 	filter-jitter-step = <4>;
 	filter-smooth-level = <ESP32_TOUCH_FILTER_SMOOTH_MODE_IIR_2>;
 
-	my_touch_sensor_0: touch_sensor_0 {
+	my_touch_sensor_1: touch_sensor_1 {
 		channel_num = <1>;
 		channel_sens = <20>;
 		zephyr,code = <INPUT_KEY_0>;
