@@ -37,21 +37,29 @@ void touch_activated(const struct device *dev, struct gpio_callback *cb, uint32_
 
 int main(void)
 {
+    k_msleep(SLEEP_TIME_MS);
+
+    printf("Startup of board: %s\n", CONFIG_BOARD);
     int ret;
 
     if (!gpio_is_ready_dt(&led)) {
         return 0;
     }
 
+    printf("Set up LED at %s pin %d\n", led.port->name, led.pin);
+
     ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
     if (ret < 0) {
         return 0;
     }
 
+    printf("Setup touch button\n");     // <-- stalls here
+
     if (!gpio_is_ready_dt(&touch1)) {
-        printf("Error: touch device %s is not ready\n",
-               touch1.port->name);
+        printf("Error: touch device %s is not ready\n", touch1.port->name);
         return 0;
+    } else {
+        printf("Touch device %s is ready\n", touch1.port->name);
     }
 
     ret = gpio_pin_configure_dt(&touch1, GPIO_INPUT);
@@ -71,8 +79,6 @@ int main(void)
     gpio_init_callback(&touch_cb_data, touch_activated, BIT(touch1.pin));
     gpio_add_callback(touch1.port, &touch_cb_data);
     printf("Set up button at %s pin %d\n", touch1.port->name, touch1.pin);
-
-    printf("Board: %s\n", CONFIG_BOARD);
 
     while (1) {
         k_msleep(SLEEP_TIME_MS);
