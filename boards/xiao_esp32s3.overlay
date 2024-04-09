@@ -1,11 +1,13 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <zephyr/dt-bindings/input/esp32-touch-sensor-input.h>
 
+// aliases & leds don't exist in the dts file
 / {
-
 aliases {
 	led0 = &myled0;
 	touch1 = &my_touch_sensor_1;
+	touch2 = &my_touch_sensor_2;
+	touch3 = &my_touch_sensor_3;
 };
 
 leds {
@@ -14,14 +16,26 @@ leds {
 		gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
 	};
 };
-
-touch {
-	status="okay";
-	my_touch_sensor_1: touch_sensor_1 {
-		channel_num = <1>;
-		channel_sens = <50>;
-		zephyr,code = <INPUT_KEY_0>;
-	};
 };
 
+// touch exists in the dts file so need to '&' here
+&touch {
+	status="okay";
+	my_touch_sensor_1: touch_sensor_1 {
+		channel-num = <1>;
+		channel-sens = <20>;
+		zephyr,code = <INPUT_KEY_0>;
+	};
+
+	my_touch_sensor_2: touch_sensor_2 {
+		channel-num = <2>;
+		channel-sens = <60>;
+		zephyr,code = <INPUT_KEY_1>;
+	};
+
+	my_touch_sensor_3: touch_sensor_3 {
+		channel-num = <3>;
+		channel-sens = <100>;
+		zephyr,code = <INPUT_KEY_2>;
+	};
 };
