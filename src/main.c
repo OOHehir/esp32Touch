@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Intel Corporation
+ * Copyright (c) 2024 Owen O'Hehir
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -8,16 +8,10 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/input/input.h>
-#include <zephyr/logging/log.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-
-LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 #define SLEEP_TIME_MS   1000
 
-/*
- * Get configuration from the devicetree
- */
 #define LED0_NODE DT_ALIAS(led0)
 #if !DT_NODE_HAS_STATUS(LED0_NODE, okay)
 #error "Unsupported board: led0 devicetree alias is not defined"
