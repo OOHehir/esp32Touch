@@ -6,8 +6,6 @@
 aliases {
 	led0 = &led0;
 	touch1 = &touch1;
-	// touch2 = &my_touch_sensor_2;
-	// touch3 = &my_touch_sensor_3;
 };
 
 leds {
