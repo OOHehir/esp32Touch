@@ -1,5 +1,4 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <zephyr/dt-bindings/input/esp32-touch-sensor-input.h>
 
 // aliases & leds don't exist in the dts file
 / {
