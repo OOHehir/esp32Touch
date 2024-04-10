@@ -13,7 +13,41 @@
 		"C_Cpp.default.compileCommands": "build/compile_commands.json",
 
 		// File Associations
-		"files.associations": {}
+		"files.associations": {
+			"input-event-codes.h": "c",
+			"array": "c",
+			"atomic": "c",
+			"bit": "c",
+			"*.tcc": "c",
+			"cmath": "c",
+			"compare": "c",
+			"concepts": "c",
+			"bitset": "c",
+			"string": "c",
+			"unordered_map": "c",
+			"exception": "c",
+			"algorithm": "c",
+			"memory": "c",
+			"memory_resource": "c",
+			"random": "c",
+			"string_view": "c",
+			"type_traits": "c",
+			"utility": "c",
+			"functional": "c",
+			"fstream": "c",
+			"iosfwd": "c",
+			"istream": "c",
+			"limits": "c",
+			"new": "c",
+			"numeric": "c",
+			"ostream": "c",
+			"sstream": "c",
+			"streambuf": "c",
+			"system_error": "c",
+			"regex": "c",
+			"tuple": "c",
+			"typeinfo": "c"
+		}
 	},
 	"tasks": {
 		"version": "2.0.0",
