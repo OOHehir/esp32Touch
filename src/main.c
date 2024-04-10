@@ -30,8 +30,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
-static void input_cb(struct input_event *evt)
-{
+static void input_cb(struct input_event *evt) {
     printf("Input event: %d, value: %d, code: %d\n", evt->type, evt->value, evt->code);
     if (evt->code == INPUT_KEY_0 && evt->value == 1) {
         gpio_pin_toggle_dt(&led);
@@ -40,8 +39,7 @@ static void input_cb(struct input_event *evt)
 
 INPUT_CALLBACK_DEFINE(NULL, input_cb);
 
-int main(void)
-{
+int main(void) {
     k_msleep(SLEEP_TIME_MS);
 
     printf("Startup of board: %s\n", CONFIG_BOARD);
