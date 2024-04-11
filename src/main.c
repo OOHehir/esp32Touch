@@ -26,8 +26,8 @@ static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
 static void input_cb(struct input_event *evt) {
     printf("Input event: %d, value: %d, code: %d\n", evt->type, evt->value, evt->code);
-    if (evt->code == INPUT_KEY_0 && evt->value == 1) {
-        gpio_pin_toggle_dt(&led);
+    if (evt->code == INPUT_KEY_0) {
+        gpio_pin_set_dt(&led, evt->value);
     }
 }
 
