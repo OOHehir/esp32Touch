@@ -4,5 +4,6 @@ tests:
   sample.board.esp32.touch:
     platform_allow: xiao_esp32s3/esp32s3/procpu
     tags:
+      - esp32
       - touch
       - input

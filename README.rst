@@ -1,5 +1,5 @@
 .. zephyr:code-sample:: esp32Touch
-   :name: esp32 Touch
+   :name: ESP32 Touch
    :relevant-api: esp32-touch
 
    Detect input using the touch peripheral of an ESP32.
@@ -9,16 +9,20 @@ Overview
 
 This application sets the status of an LED in response to 'touch' events on an input pin using the :ref:`Touch API <touch_api>`.
 
-The ESP32S3 features a peripheral making it trivial to detects capacitive touch events. Enabled pins are assigned
- unique key codes in the devicetree, together with a sensitivity setting. When a touch input occurs a corresponding event is
- generated. The event code contains the assigned key code making it is possible to work out which touch input has generated the event.
+The ESP32 SoCs, with the exception of the ESP32-C series, features a peripheral making it trivial to detects capacitive touch events. Enabled 
+pins are assigned unique key codes in the devicetree, together with a sensitivity setting. When a touch input occurs a corresponding event is
+generated. The event structure contains the assigned key code making it is possible to work out which touch input has generated the event.
 
 Supported SoCs
 **************
 
 The following SoCs are supported by this sample code so far:
 
+* ESP32
+* ESP32-S2
 * ESP32-S3
+
+Note: The ESP32-C3 does not have this peripheral.
 
 Wiring:
 *******
@@ -42,7 +46,7 @@ To build and flash this sample for the :ref:`seeed xiao esp32s3`:
 
 Change ``xiao_esp32s3`` appropriately for other supported boards.
 
-After flashing, touch the wire to trigger a change of the LED status.
+After flashing, touch the wire to change the LED status.
 The console outputs detected event details.
 
 .. code-block:: console
