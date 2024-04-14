@@ -1,6 +1,12 @@
 #!/bin/bash
 # Quick script to set env & build for xiao_esp32s3
 
+if [ "$EUID" = 0 ]
+  then echo "Don't run as root!"
+  exit
+fi
+
+
 source ../zephyrproject/.venv/bin/activate
 source ../zephyrproject/zephyr/zephyr-env.sh
 source ../zephyrproject/zephyr/scripts/west_commands/completion/west-completion.bash

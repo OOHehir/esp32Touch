@@ -9,7 +9,7 @@ Overview
 
 This application sets the status of an LED in response to 'touch' events on an input pin using the :ref:`Touch API <touch_api>`.
 
-The ESP32 SoCs, with the exception of the ESP32-C series, features a peripheral making it trivial to detects capacitive touch events. Enabled 
+The ESP32 SoCs, with the exception of the ESP32-C series, features a peripheral making it trivial to detects capacitive touch events. Enabled
 pins are assigned unique key codes in the devicetree, together with a sensitivity setting. When a touch input occurs a corresponding event is
 generated. The event structure contains the assigned key code making it is possible to work out which touch input has generated the event.
 
@@ -27,7 +27,7 @@ Note: The ESP32-C3 does not have this peripheral.
 Wiring:
 *******
 It is suggested:
-#. A short wire is connected to the ``touch1`` pin but directly touching the pin 
+#. A short wire is connected to the ``touch1`` pin but directly touching the pin
 should achieve the same result.
 #. Have an LED connected via a GPIO pin (these are called "User LEDs" on many of
    Zephyr's :ref:`boards`).
