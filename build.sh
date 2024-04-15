@@ -1,7 +1,7 @@
 #!/bin/bash
 # Quick script to set env & build for xiao_esp32s3
 
-if [ "$EUID" eq 0 ]
+if [ "$EUID" -eq 0 ]
   then echo "Don't run as root!"
   exit
 fi
