@@ -25,6 +25,10 @@ Build application & bootloader
 ```
     west flash
 ```
+
+## Modify config
+ west build -t guiconfig --board xiao_esp32s3/esp32s3/procpu
+
 ## Pinout:
 
 ![ESP32S3](images/esp32s3_pinout.jpeg)
