@@ -12,9 +12,9 @@
 
 #define SLEEP_TIME_MS   1000
 
-#define LED0_NODE DT_ALIAS(led0)
-#if !DT_NODE_HAS_STATUS(LED0_NODE, okay)
-#error "Unsupported board: led0 devicetree alias is not defined"
+#define LED1_NODE DT_ALIAS(led1)
+#if !DT_NODE_HAS_STATUS(LED1_NODE, okay)
+#error "Unsupported board: led1 devicetree alias is not defined"
 #endif
 
 #define TOUCH1_NODE DT_ALIAS(touch1)
@@ -22,7 +22,15 @@
 #error "Unsupported board: touch1 devicetree alias is not defined"
 #endif
 
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
+#ifndef CONFIG_SOC_SERIES_ESP32S3
+#error "Unsupported SoC series"
+#endif
+
+#ifndef CONFIG_INPUT_ESP32_TOUCH_SENSOR
+#error "CONFIG_INPUT_ESP32_TOUCH_SENSOR not set"
+#endif
+
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 
 static void input_cb(struct input_event *evt) {
     printf("Input event: %d, value: %d, code: %d\n", evt->type, evt->value, evt->code);
