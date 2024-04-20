@@ -29,6 +29,9 @@ Build application & bootloader
 ## Modify config
  west build -t guiconfig --board xiao_esp32s3/esp32s3/procpu
 
+ ## Build with twister
+ west twister -b xiao_esp32s3/esp32s3/procpu -t build /zephyr/samples/hello_world
+ 
 ## Pinout:
 
 ![ESP32S3](images/esp32s3_pinout.jpeg)
