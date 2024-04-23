@@ -13,8 +13,10 @@ source ../zephyrproject/zephyr/scripts/west_commands/completion/west-completion.
 west update
 west blobs fetch hal_espressif
 
+# For > Zephyr v3.6
 # west build -b xiao_esp32s3/esp32s3/procpu ./ -p always
 
+# For <= Zephyr v3.6
 west build -b xiao_esp32s3 ./ -p always
 
 export ESPTOOL_PORT=/dev/ttyACM0
